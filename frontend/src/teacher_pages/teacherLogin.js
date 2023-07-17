@@ -6,6 +6,7 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 export default function login() {
+
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -13,33 +14,35 @@ export default function login() {
 
     const navigate = useNavigate();
 
-
     const [errors, setErrors] = useState({})
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const body = { ...values };
-      
+
         console.log("Body===============================", body);
+
         const validationErrors = validation(body);
+
         setErrors(validationErrors);
         if (
-          validationErrors.email === "" &&
-          validationErrors.password === ""
+            validationErrors.email === "" &&
+            validationErrors.password === ""
         ) {
-          axios
-            .post("http://localhost:4000/teacher/login", values)
-            .then((res) => {
-                console.log( res.data.status);
-              if (res.data.status === true) {
-                navigate("/teacherhome");
-                setValues(res.data);
-              } else {
-                alert("User does not exist");
-              }
-            })
-            .catch((err) => console.log(err));
+            axios
+                .post("http://192.168.253.19:4000/teacher/login", values)
+                .then((res) => {
+                    console.log(res.data.status);
+                    if (res.data.status === true) {
+                        navigate("/teacherhome");
+                        setValues(res.data);
+                    } else {
+                        alert("User does not exist");
+                    }
+                })
+                .catch((err) => console.log(err));
         }
-      };
+    };
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -101,7 +104,7 @@ export default function login() {
                 <Link to='/' className="mt-3">
                     Go to Student's Login
                 </Link>
-                </div>
+            </div>
         </div>
     );
 }

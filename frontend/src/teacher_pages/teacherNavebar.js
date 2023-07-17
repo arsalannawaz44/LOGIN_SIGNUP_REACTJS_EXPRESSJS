@@ -8,14 +8,16 @@ import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap'
 
 export default function navbar(props) {
+
     const heading = props.heading;
+
     const Courses = props.Courses;
-    
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary mb-5">
             <Container fluid>
-            <LinkContainer to="/teacherhome">
-                <Navbar.Brand href="">{heading}</Navbar.Brand>
+                <LinkContainer to="/teacherhome">
+                    <Navbar.Brand href="">{heading}</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
@@ -26,14 +28,14 @@ export default function navbar(props) {
                     >
                         <LinkContainer to="/teacherhome">
                             <Nav.Link>Home</Nav.Link>
-                            </LinkContainer>
+                        </LinkContainer>
                         <NavDropdown title="Courses" id="navbarScrollingDropdown">
-                        <LinkContainer to="/viewteachercourses">
-                            <Nav.Link href="#action3">View Courses</Nav.Link>
+                            <LinkContainer to="/viewteachercourses">
+                                <Nav.Link href="#action3">View Courses</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/teacheraddcourses">
                                 <Nav.Link>{Courses}</Nav.Link>
-                                </LinkContainer>
+                            </LinkContainer>
                         </NavDropdown>
                     </Nav>
                     <Form className="d-flex">

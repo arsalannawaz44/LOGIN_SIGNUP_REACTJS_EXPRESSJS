@@ -1,139 +1,159 @@
-import React from 'react'
-import Navebar from './studentNavebar'
-import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
-
+import React from "react";
+import Navebar from "./studentNavebar";
+import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function studentHome() {
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const [studentId, SetStudentid] = useState();
+  const [student_id, Setstudentid] = useState();
 
-  const handleStudentId = (e) => {
-    SetStudentid(e.target.value);
+  const navigate = useNavigate();
+
+  const handlestudentId = (e) => {
+    Setstudentid(e.target.value);
   };
 
   const handleCheckboxChange = (e) => {
-    const value = e.target.value;
+    const { name, value } = e.target;
+    console.log(name, value);
     const isChecked = e.target.checked;
-
     setSelectedCourses((prevCourses) => {
       if (isChecked) {
-        return { ...prevCourses, [value]: value, studentId };
+        return { ...prevCourses, [name]: value, student_id };
       } else {
-        const { [value]: _, ...updatedCourses } = prevCourses;
+        const { [name]: _, ...updatedCourses } = prevCourses;
         return updatedCourses;
       }
     });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log(selectedCourses);
-    {
-      axios
-      .post('http://localhost:4000/student/addcourses', values)
-      .then(res => {
-          console.log(res);
-          navigate('/viewstudentcourses');
+    axios
+      .post("http://192.168.253.19:4000/courses/studentcourse", selectedCourses)
+      .then((response) => {
+        console.log("Course Added successfully!");
+        console.log("Response data:", response.data);
+        navigate("/viewstudentcourses");
       })
-      .catch(err => console.log(err));
-  }
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
+
   return (
     <>
       {<Navebar heading="Student Dashboard" Courses="Add Courses" />}
 
-
       <div className="container w-25 d-flex flex-column justify-content-center">
+        <h3 className="mb-3">Student Add Courses</h3>
 
-
-
-
-          <h3 className="mb-3">Add Courses</h3>
-
-          <div className="mb-3">
-            <input 
-            type="text" 
-            id="last_name" 
-            onChange={handleStudentId} 
-            className="form-control" 
-            placeholder="Enter Your ID" required />
-          </div>
-
-          <div className="d-flex mb-3 bg-info rounded p-3">
-            <Form.Check 
-              id="bordered-checkbox-1" 
-              onChange={handleCheckboxChange} 
-              type="checkbox" 
-              value="1" 
-              name="bordered-checkbox" 
-              className="" />
-            <label className="mx-5 text-white">Maths</label>
-          </div>
-
-          <div className="d-flex mb-3 bg-info rounded p-3">
-            <Form.Check 
-              id="bordered-checkbox-1" 
-              onChange={handleCheckboxChange} 
-              type="checkbox" 
-              value="2" 
-              name="bordered-checkbox" 
-              className="" />
-            <label className="mx-5 text-white">Science</label>
-          </div>
-
-          <div className="d-flex mb-3 bg-info rounded p-3">
-            <Form.Check 
-              id="bordered-checkbox-1" 
-              onChange={handleCheckboxChange} 
-              type="checkbox" 
-              value="3" 
-              name="bordered-checkbox" 
-              className="" />
-            <label className="mx-5 text-white">Physics</label>
-          </div>
-
-          <div className="d-flex mb-3 bg-info rounded p-3">
-            <Form.Check 
-              id="bordered-checkbox-1" 
-              onChange={handleCheckboxChange} 
-              type="checkbox" 
-              value="4" 
-              name="bordered-checkbox" 
-              className="" />
-            <label className="mx-5 text-white">Chemistry</label>
-          </div>
-          
-          <div className="d-flex mb-3 bg-info rounded p-3">
-            <Form.Check 
-              id="bordered-checkbox-1" 
-              onChange={handleCheckboxChange} 
-              type="checkbox" 
-              value="5" 
-              name="bordered-checkbox" 
-              className="" />
-            <label className="mx-5 text-white">Computer Science</label>
-          </div>
-
-          <div className="d-flex mb-3 bg-info rounded p-3">
-            <Form.Check 
-              id="bordered-checkbox-1" 
-              onChange={handleCheckboxChange} 
-              type="checkbox" 
-              value="6" 
-              name="bordered-checkbox" 
-              className="" />
-            <label className="mx-5 text-white">English</label>
-          </div>
-
-          <button type="submit" onClick={handleSubmit} className="btn btn-success">Submit</button>
-          
-
+        <div className="mb-3">
+          <input
+            type="text"
+            id="last_name"
+            onChange={handlestudentId}
+            className="form-control"
+            placeholder="Enter Your ID"
+            required
+          />
         </div>
-        
 
+        <div className="d-flex mb-3 bg-info rounded p-3">
+          <Form.Check
+            id="bordered-checkbox-1"
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            value="1"
+            name="course_id"
+            className=""
+          />
+          <label className="mx-5 text-white">Mathematics</label>
+        </div>
+
+        <div className="d-flex mb-3 bg-info rounded p-3">
+          <Form.Check
+            id="bordered-checkbox-1"
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            value="2"
+            name="course_id"
+            className=""
+          />
+          <label className="mx-5 text-white">Physics</label>
+        </div>
+
+        <div className="d-flex mb-3 bg-info rounded p-3">
+          <Form.Check
+            id="bordered-checkbox-1"
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            value="3"
+            name="course_id"
+            className=""
+          />
+          <label className="mx-5 text-white">Urdu</label>
+        </div>
+
+        <div className="d-flex mb-3 bg-info rounded p-3">
+          <Form.Check
+            id="bordered-checkbox-1"
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            value="4"
+            name="course_id"
+            className=""
+          />
+          <label className="mx-5 text-white">Chemistry</label>
+        </div>
+
+        <div className="d-flex mb-3 bg-info rounded p-3">
+          <Form.Check
+            id="bordered-checkbox-1"
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            value="5"
+            name="course_id"
+            className=""
+          />
+          <label className="mx-5 text-white">Computer Science</label>
+        </div>
+
+        <div className="d-flex mb-3 bg-info rounded p-3">
+          <Form.Check
+            id="bordered-checkbox-1"
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            value="6"
+            name="course_id"
+            className=""
+          />
+          <label className="mx-5 text-white">English</label>
+        </div>
+
+        <div className="d-flex mb-3 bg-info rounded p-3">
+          <Form.Check
+            id="bordered-checkbox-1"
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            value="6"
+            name="course_id"
+            className=""
+          />
+          <label className="mx-5 text-white">Social Studies</label>
+        </div>
+
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="btn btn-primary"
+        >
+          Submit
+        </button>
+      </div>
     </>
-  )
+  );
 }

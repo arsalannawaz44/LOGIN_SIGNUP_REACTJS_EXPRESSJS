@@ -42,19 +42,19 @@ export default function signup() {
             validationErrors.email == '' &&
             validationErrors.class == '' &&
             validationErrors.password == ''
-        ) 
-        
+        )
 
-        axios
-        .post('http://localhost:4000/studentsignup', values)
-        .then((response) => {
-          console.log('Signup successful!');
-          console.log('Response data:', response.data);
-          navigate('/'); 
-        })
-        .catch((error) => {
-          console.error('Error during Signup:', error);
-        });
+
+            axios
+                .post('http://192.168.253.19:4000/student/signup', values)
+                .then((response) => {
+                    console.log('Signup successful!');
+                    console.log('Response data:', response.data);
+                    navigate('/');
+                })
+                .catch((error) => {
+                    console.error('Error during Signup:', error);
+                });
     };
 
 
@@ -120,7 +120,7 @@ export default function signup() {
                 <Link to='/teachersignup' className="mt-3">
                     Go to Teacher's Signup
                 </Link>
-                </div>
+            </div>
         </div>
     )
 }

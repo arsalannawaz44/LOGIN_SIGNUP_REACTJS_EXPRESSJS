@@ -24,36 +24,40 @@ export default function signup() {
     });
 
     const navigate = useNavigate();
+
     const [errors, setErrors] = useState({});
 
     const handleInput = (e) => {
         const { name, value } = e.target;
         setValues((prev) => ({ ...prev, [name]: value }));
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const body = { ...values }
 
         console.log("Body===============================", body)
+
         const validationErrors = validation(body);
+
         setErrors(validationErrors);
         if (
             validationErrors.name == '' &&
             validationErrors.email == '' &&
             validationErrors.class == '' &&
             validationErrors.password == ''
-        ) {
+        )
             axios
-                .post('http://http://192.168.253.19:4000/teacher/signup', values)
-                .then(res => {
-                    console.log(res);
+                .post('http://192.168.253.19:4000/teacher/signup', values)
+                .then((response) => {
+                    console.log('Signup successful!');
+                    console.log('Response data:', response.data);
                     navigate('/teacherlogin');
                 })
-                .catch(err => console.log(err));
-        }
-        else {
-            console.log('Error')
-        }
+                .catch((error) => {
+                    console.error('Error during Signup:', error);
+                });
     };
 
 
@@ -119,7 +123,7 @@ export default function signup() {
                 <Link to='/studentsignup' className="mt-3">
                     Go to Student's Signup
                 </Link>
-                </div>
+            </div>
         </div>
     )
 }

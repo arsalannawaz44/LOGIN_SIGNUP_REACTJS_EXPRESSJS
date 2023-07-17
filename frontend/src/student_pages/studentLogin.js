@@ -6,6 +6,7 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 export default function login() {
+
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -15,19 +16,22 @@ export default function login() {
 
 
     const [errors, setErrors] = useState({})
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const body = { ...values };
 
         console.log("Body===============================", body);
+
         const validationErrors = validation(body);
+
         setErrors(validationErrors);
         if (
             validationErrors.email === "" &&
             validationErrors.password === ""
         ) {
             axios
-                .post("http://localhost:4000/login", values)
+                .post("http://192.168.253.19:4000/student/login", values)
                 .then((res) => {
                     console.log(res.data.status);
                     if (res.data.status === true) {
@@ -45,12 +49,10 @@ export default function login() {
         const { name, value } = e.target;
         setValues((prev) => ({ ...prev, [name]: value }));
     };
-    return (
-        <div
-            className="d-flex flex-column justify-content-center align-items-center vh-100"
-            style={{ backgroundImage: "radial-gradient(#35F5C6, #363A77)" }}
-        >
 
+    return (
+        <div className="d-flex flex-column justify-content-center align-items-center vh-100"
+            style={{ backgroundImage: "radial-gradient(#35F5C6, #363A77)" }}>
             <div className="bg-white shadow p-5 rounded-4 w-25">
                 <form action="" onSubmit={handleSubmit}>
                     <h2 className="d-flex align-items-center justify-content-center mb-5">Student Log In</h2>
