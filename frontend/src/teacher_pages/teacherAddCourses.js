@@ -29,9 +29,18 @@ export default function studentHome() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(selectedCourses)
+    {
+    axios
+    .post('http://localhost:4000/teacher/addcourses', values)
+    .then(res => {
+        console.log(res);
+        navigate('/viewteachercourses');
+    })
+    .catch(err => console.log(err));
+}
+  }
 
-    console.log(selectedCourses);
-  };
   return (
     <>
       {<Navebar heading="Teacher Dashboard" Courses="Add Courses" />}

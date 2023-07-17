@@ -31,6 +31,15 @@ export default function studentHome() {
     e.preventDefault();
 
     console.log(selectedCourses);
+    {
+      axios
+      .post('http://localhost:4000/student/addcourses', values)
+      .then(res => {
+          console.log(res);
+          navigate('/viewstudentcourses');
+      })
+      .catch(err => console.log(err));
+  }
   };
   return (
     <>

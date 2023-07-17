@@ -14,7 +14,9 @@ export default function navbar(props) {
     return (
         <Navbar expand="lg" className="bg-body-tertiary mb-5">
             <Container fluid>
+            <LinkContainer to="/studenthome">
                 <Navbar.Brand href="">{heading}</Navbar.Brand>
+                </LinkContainer>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -26,7 +28,9 @@ export default function navbar(props) {
                             <Nav.Link>Home</Nav.Link>
                             </LinkContainer>
                         <NavDropdown title="Courses" id="navbarScrollingDropdown">
-                            <Nav.Link href="#action3">View Courses</Nav.Link>
+                        <LinkContainer to="/viewstudentcourses">
+                            <Nav.Link>View Courses</Nav.Link>
+                            </LinkContainer>
                             <LinkContainer to="/studentaddcourses">
                                 <Nav.Link>{Courses}</Nav.Link>
                                 </LinkContainer>
