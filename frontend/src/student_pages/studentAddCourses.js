@@ -48,7 +48,7 @@ export default function studentHome() {
     <>
       {<Navebar heading="Student Dashboard" Courses="Add Courses" />}
 
-      <div className="container w-25 d-flex flex-column justify-content-center">
+      <div className="container w-25% d-flex flex-column justify-content-center">
         <h3 className="mb-3">Student Add Courses</h3>
 
         <div className="mb-3">

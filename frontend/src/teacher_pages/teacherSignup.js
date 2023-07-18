@@ -64,7 +64,7 @@ export default function signup() {
 
     return (
         <div className='d-flex flex-column justify-content-center align-items-center vh-100' style={{ backgroundImage: 'radial-gradient(#35F5C6, #363A77)' }}>
-            <div className='bg-white shadow p-5 rounded-4 w-25'>
+            <div className='bg-white shadow p-5 rounded-4 w-25%'>
                 <form action='' onSubmit={handleSubmit}>
                     <h2 className='d-flex align-items-center justify-content-center mb-5'>
                         Teacher Sign Up
@@ -88,7 +88,7 @@ export default function signup() {
                     <div className='mb-3'>
                         <label htmlFor="text">Class</label>
                         <input
-                            type="text"
+                            type="number"
                             placeholder='Enter Your Class'
                             className='form-control'
                             name='class'

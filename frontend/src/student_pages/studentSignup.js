@@ -30,6 +30,7 @@ export default function signup() {
         const { name, value } = e.target;
         setValues((prev) => ({ ...prev, [name]: value }));
     };
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const body = { ...values }
@@ -46,7 +47,7 @@ export default function signup() {
 
 
             axios
-                .post('http://192.168.253.19:4000/student/signup', values)
+                .post('http://localhost:4000/studentsignup', values)
                 .then((response) => {
                     console.log('Signup successful!');
                     console.log('Response data:', response.data);
@@ -61,7 +62,7 @@ export default function signup() {
 
     return (
         <div className='d-flex flex-column justify-content-center align-items-center vh-100' style={{ backgroundImage: 'radial-gradient(#35F5C6, #363A77)' }}>
-            <div className='bg-white shadow p-5 rounded-4 w-25'>
+            <div className='bg-white shadow p-5 rounded-4 w-25%'>
                 <form action='' onSubmit={handleSubmit}>
                     <h2 className='d-flex align-items-center justify-content-center mb-5'>
                         Student Sign Up
@@ -85,7 +86,7 @@ export default function signup() {
                     <div className='mb-3'>
                         <label htmlFor="text">Class</label>
                         <input
-                            type="text"
+                            type="number"
                             placeholder='Enter Your Class'
                             className='form-control'
                             name='class'

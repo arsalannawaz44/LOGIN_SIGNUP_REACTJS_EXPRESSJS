@@ -54,7 +54,7 @@ export default function login() {
             style={{ backgroundImage: "radial-gradient(#35F5C6, #363A77)" }}
         >
 
-            <div className="bg-white shadow p-5 rounded-4 w-25">
+            <div className="bg-white shadow p-5 rounded-4 w-25%">
                 <form action="" onSubmit={handleSubmit}>
                     <h2 className="d-flex align-items-center justify-content-center mb-5">Teacher LogIn</h2>
                     <div className="mb-3">

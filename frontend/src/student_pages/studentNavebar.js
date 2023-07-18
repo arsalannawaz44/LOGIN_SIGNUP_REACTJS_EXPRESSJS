@@ -10,11 +10,12 @@ import { LinkContainer } from 'react-router-bootstrap'
 export default function navbar(props) {
     const heading = props.heading;
     const Courses = props.Courses;
+    const link =  props.link;
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary mb-5">
             <Container fluid>
-                <LinkContainer to="/studenthome">
+                <LinkContainer to={link}>
                     <Navbar.Brand >{heading}</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="navbarScroll" />

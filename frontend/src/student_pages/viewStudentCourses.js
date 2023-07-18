@@ -14,6 +14,7 @@ export default function viewStudentCourses() {
       })
       .catch(err => console.log(err))
     // console.log(getdata);
+
   }, [])
   return (
     <>
@@ -32,10 +33,10 @@ export default function viewStudentCourses() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data?.courses?.length && data?.courses?.map((user, index) =>
+                    {data?.courses?.length && data?.courses?.map((a, index) =>
                       <tr key={index}>
-                        <td>{user.id}</td>
-                        <td>{user.name}</td>
+                        <td>{a.id}</td>
+                        <td>{a.name}</td>
                       </tr>
                     )}
                   </tbody>
