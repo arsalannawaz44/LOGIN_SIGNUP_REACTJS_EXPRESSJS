@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import axios from 'axios'
+import axios from '../axios/index'
 import Navebar from './teacherNavebar'
 
 export default function viewTeacherCourses() {
@@ -9,7 +9,7 @@ export default function viewTeacherCourses() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://192.168.253.19:4000/courses/all")
+    axios.get('courses/all')
       .then(res => {
         setData(res.data)
         // console.log(res.data);

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import validation from '../validations/signupValidation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import axios from '../axios/index';
 
 export default function signup() {
     // const [val, setVal] = useState("");
@@ -47,7 +47,7 @@ export default function signup() {
 
 
             axios
-                .post('http://localhost:4000/studentsignup', values)
+                .post('studentsignup', values)
                 .then((response) => {
                     console.log('Signup successful!');
                     console.log('Response data:', response.data);

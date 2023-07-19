@@ -3,7 +3,7 @@ import Navebar from './teacherNavebar'
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-import axios from 'axios'
+import axios from '../axios/index'
 
 
 export default function studentHome() {
@@ -41,7 +41,7 @@ export default function studentHome() {
     e.preventDefault();
     console.log(selectedCourses)
     axios
-      .post('http://192.168.253.19:4000/courses/teachercourse', selectedCourses)
+      .post('courses/teachercourse', selectedCourses)
       .then((response) => {
         console.log('Course Added successfully!');
         console.log('Response data:', response.data);

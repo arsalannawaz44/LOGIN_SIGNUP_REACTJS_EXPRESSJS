@@ -3,7 +3,7 @@ import { Link, navigate, useNavigate } from "react-router-dom";
 import validation from "../validations/loginValidation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import axios from '../axios/index'
 
 export default function login() {
 
@@ -31,7 +31,7 @@ export default function login() {
             validationErrors.password === ""
         ) {
             axios
-                .post("http://localhost:4000/login", values)
+                .post('login', values)
                 .then((res) => {
                     console.log(res.data.status);
                     if (res.data.status === true) {
