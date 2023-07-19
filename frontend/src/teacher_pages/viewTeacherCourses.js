@@ -1,27 +1,45 @@
 import React from 'react'
 import { Container } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import Form from 'react-bootstrap/Form';
+import { useState } from "react";
+import { Courses } from '../components/courses'
 import axios from '../axios/index'
 import Navebar from './teacherNavebar'
 
 export default function viewTeacherCourses() {
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    axios.get('courses/all')
-      .then(res => {
-        setData(res.data)
-        // console.log(res.data);
-      })
-      .catch(err => console.log(err))
-    // console.log(getdata);
-  }, [])
+  // useEffect(() => {
+  //   axios.get('courses/all')
+  //     .then(res => {
+  //       setData(res.data)
+  //       // console.log(res.data);
+  //     })
+  //     .catch(err => console.log(err))
+  //   // console.log(getdata);
+  // }, [])
+
+  const [query, setQuery] = useState("")
+  console.log(query)
   return (
     <>
       {<Navebar heading="Teacher Dashboard" Courses="Add Courses" />}
       <div className='container d-flex flex-column justify-content-center bg-info'>
         <h3 className="m-5 text-center">Teacher View Courses</h3>
+        <Form className="d-flex">
+          <div className='m-3'>
+
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className=""
+              aria-label="Search"
+              style={{ width: 300 }}
+              onChange={e => setQuery(e.target.value)}
+            />
+          </div>
+        </Form>
         <React.Fragment>
           <Container>
             <div className="row">
@@ -34,12 +52,20 @@ export default function viewTeacherCourses() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data?.courses?.length && data?.courses?.map((user, index) =>
+                    {/* {data?.courses?.length && data?.courses?.map((a, index) =>
                       <tr key={index}>
-                        <td>{user.id}</td>
-                        <td>{user.name}</td>
+                        <td>{a.id}</td>
+                        <td>{a.name}</td>
                       </tr>
-                    )}
+                    )} */}
+                    {Courses.filter((course) =>
+                      course.course_name.toLowerCase().includes(query)
+                    ).map((course) => (
+                      <tr>
+                        <td>{course.id}</td>
+                        <td>{course.course_name}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
