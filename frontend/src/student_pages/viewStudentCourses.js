@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
 import { Courses } from '../components/courses'
-import axios from '../axios/index'
+import axios from '../api/axios'
 import Navebar from './studentNavebar'
 
 export default function viewStudentCourses() {

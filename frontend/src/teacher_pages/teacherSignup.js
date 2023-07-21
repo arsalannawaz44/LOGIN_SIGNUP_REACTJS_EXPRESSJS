@@ -4,7 +4,7 @@ import { useState } from 'react';
 import validation from '../validations/signupValidation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import axios from '../api/axios';
 
 export default function signup() {
     // const [val, setVal] = useState("");
@@ -24,7 +24,6 @@ export default function signup() {
     });
 
     const navigate = useNavigate();
-
     const [errors, setErrors] = useState({});
 
     const handleInput = (e) => {
@@ -49,7 +48,7 @@ export default function signup() {
             validationErrors.password == ''
         )
             axios
-                .post('http://192.168.253.19:4000/teacher/signup', values)
+                .post('/teacher/signup', values)
                 .then((response) => {
                     console.log('Signup successful!');
                     console.log('Response data:', response.data);

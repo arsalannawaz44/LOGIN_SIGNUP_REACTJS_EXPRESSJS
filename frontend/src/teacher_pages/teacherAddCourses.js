@@ -3,7 +3,7 @@ import Navebar from './teacherNavebar'
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-import axios from '../axios/index'
+import axios from '../api/axios'
 
 
 export default function studentHome() {
