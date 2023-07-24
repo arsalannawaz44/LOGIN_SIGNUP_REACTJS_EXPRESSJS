@@ -61,7 +61,7 @@ export default function viewTeacherCourses() {
                     {Courses.filter((course) =>
                       course.course_name.toLowerCase().includes(query)
                     ).map((course) => (
-                      <tr>
+                      <tr key={course.id}>
                         <td>{course.id}</td>
                         <td>{course.course_name}</td>
                       </tr>

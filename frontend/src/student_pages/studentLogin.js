@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import validation from "../validations/loginValidation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
@@ -19,8 +19,8 @@ export default function login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         const body = { ...values };
-
         console.log("Body===============================", body);
 
         const validationErrors = validation(body);
@@ -35,7 +35,10 @@ export default function login() {
                 .then((res) => {
                     console.log(res.data.status);
                     if (res.data.status === true) {
-                        navigate("/studenthome");
+                        localStorage.setItem('login', true)
+                        let login = localStorage.getItem('login')
+                        if(login)
+                        navigate("/studenthome", {replace: true});
                         setValues(res.data);
                     } else {
                         alert("User does not exist");
